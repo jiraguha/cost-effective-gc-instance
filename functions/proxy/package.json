@@ -1,0 +1,11 @@
+{
+    "name": "http-function",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+      "@google-cloud/firestore": "^6.4.1",
+      "http-proxy": "^1.18.1",
+      "googleapis": "^92.0.0"
+    }
+  }
+  

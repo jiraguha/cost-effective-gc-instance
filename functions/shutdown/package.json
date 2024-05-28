@@ -1,0 +1,10 @@
+{
+    "name": "shutdown-function",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+      "@google-cloud/firestore": "^6.4.1",
+      "googleapis": "^92.0.0"
+    }
+  }
+  
