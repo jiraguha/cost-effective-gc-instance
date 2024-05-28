@@ -41,6 +41,12 @@ variable "instance_idle" {
   default     = "1800"  // 30 minutes
 }
 
+variable "instance_start_duration" {
+  description = "Instance startup duration in milli-seconds"
+  type        = string
+  default     = "60000"  // 1 minutes
+}
+
 # Local Computed Variables
 locals {
   zone = "${var.region}-${var.zone_l}"
@@ -176,7 +182,8 @@ resource "google_cloudfunctions_function" "proxy" {
     TARGET_URL = google_compute_address.static_ip.address,
     COLLECTION_ID = var.request_collection_id,
     ZONE          = local.zone,
-    INSTANCE_NAME = google_compute_instance.app_instance.name
+    INSTANCE_NAME = google_compute_instance.app_instance.name,
+    INSTANCE_START_DURATION = var.instance_start_duration
   }
 }
 

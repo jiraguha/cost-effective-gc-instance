@@ -10,6 +10,8 @@ const collectionId = process.env.COLLECTION_ID;
 const projectId = process.env.PROJECT_ID;
 const zone = process.env.ZONE;
 const instanceName = process.env.INSTANCE_NAME;
+const instanceStartDuration = parseInt(process.env.INSTANCE_START_DURATION,10);
+
 if (!/^https?:\/\//i.test(targetUrl)) {
   targetUrl = `http://${targetUrl}`;
 }
@@ -40,7 +42,7 @@ async function restartInstanceIfNeeded() {
       console.log(`Instance ${instanceName} started successfully`, startResponse.data);
   
       // Wait for the instance to start
-      await new Promise(resolve => setTimeout(resolve, 60000)); // wait for 1 minute
+      await new Promise(resolve => setTimeout(resolve, instanceStartDuration)); // wait for 1 minute
     }
   }
 
