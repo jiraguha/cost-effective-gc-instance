@@ -225,6 +225,7 @@ resource "google_cloudfunctions_function" "shutdown" {
     ZONE          = local.zone,
     INSTANCE_NAME = google_compute_instance.app_instance.name,
     INSTANCE_MAX_IDLE_DURATION = var.instance_idle
+    COLLECTION_ID = var.request_collection_id,
   }
 }
 
@@ -283,7 +284,8 @@ resource "google_cloudfunctions_function" "clean_up_function" {
   entry_point           = "cleanUpRequests"
 
   environment_variables = {
-    PROJECT_ID = var.project_id
+    PROJECT_ID = var.project_id,
+    COLLECTION_ID = var.request_collection_id
   }
 }
 

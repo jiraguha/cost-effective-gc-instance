@@ -7,11 +7,12 @@ const projectId = process.env.PROJECT_ID;
 const zone = process.env.ZONE;
 const instanceName = process.env.INSTANCE_NAME;
 const maxIdleDuration = parseInt(process.env.INSTANCE_MAX_IDLE_DURATION, 10);
+const collectionId = process.env.COLLECTION_ID;
 
 exports.checkAndShutdown = async (req, res) => {
   try {
     // Get the latest request log from Firestore
-    const snapshot = await firestore.collection('requests')
+    const snapshot = await firestore.collection(collectionId)
       .orderBy('created_at', 'desc')
       .limit(1)
       .get();

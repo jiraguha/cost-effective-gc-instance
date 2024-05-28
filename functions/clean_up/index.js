@@ -1,10 +1,10 @@
 const { Firestore } = require('@google-cloud/firestore');
-
+const collectionId = process.env.COLLECTION_ID;
 const firestore = new Firestore();
 
 exports.cleanUpRequests = async (req, res) => {
   try {
-    const requestsCollection = firestore.collection('requests');
+    const requestsCollection = firestore.collection(collectionId);
 
     // Get all documents in the collection, ordered by the timestamp
     const snapshot = await requestsCollection.orderBy('created_at', 'desc').get();
